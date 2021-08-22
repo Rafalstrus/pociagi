@@ -7,9 +7,9 @@ interface DefaultState {
 }
 
 const defaultState: DefaultState = {
-    day: "",
+    day: "12/08/2021",
     trainData: {},
-    trainName: ""
+    trainName: "pociag"
 };
 const Reducer = (state = defaultState, action: any) => {
     switch (action.type) {

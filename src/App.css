@@ -1,3 +1,14 @@
 .App {
   text-align: center;
+  min-height: 100vh;
 }
+
+p{
+  margin-block-start: 0;
+}
+ html{
+  background-image: url('train-60539_1920.jpg');
+  background-size:  100% 100% ;
+  background-repeat: no-repeat;
+  background-color: rgb(183, 183, 236);
+} 
