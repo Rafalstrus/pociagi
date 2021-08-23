@@ -5,6 +5,7 @@ import {Button} from '@material-ui/core/';
 function Admin() {
   return (
     <div >
+      <Button />
       <p>Admin</p>
     </div>
   );

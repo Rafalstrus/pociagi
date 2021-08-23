@@ -1,13 +1,25 @@
 const Types = {
-    CHANGE_NAME: "CHANGE_NAME"
+    CHANGE_START_STATION: "CHANGE_START_STATION",
+    CHANGE_DESTINATION_STATION: "CHANGE_DESTINATION_STATION",
+    CHANGE_TRAIN_DATA: "CHANGE_TRAIN_DATA"
 };
 // actions
-const changeName = (trainName: string) => ({
-    type: Types.CHANGE_NAME,
-    trainName: trainName
+const changeStartStation = (startStation: string) => ({
+    type: Types.CHANGE_START_STATION,
+    startStation: startStation
 })
-  const exportedObject = {
-    changeName,
+const changeDestinationStation = (destinationStation: string) => ({
+    type: Types.CHANGE_DESTINATION_STATION,
+    destinationStation: destinationStation
+})
+const changeTrainData = (data: string) => ({
+    type: Types.CHANGE_TRAIN_DATA,
+    data: data
+})
+const exportedObject = {
+    changeStartStation,
+    changeDestinationStation,
+    changeTrainData,
     Types
 }
 export default exportedObject

@@ -2,13 +2,14 @@ import ACTIONS from "./action";
 import store from './store';
 
 
-
-const mapStateToProps = (state :any) => ({
+const mapStateToProps = (state: any) => ({
     item: state.item
 });
 
-const mapDispatchToProps = (dispatch :any) => ({
-    changeName: (trainName :string)=> dispatch(ACTIONS.changeName(trainName))
+const mapDispatchToProps = (dispatch: any) => ({
+    changeStartStation: (startStation: string) => dispatch(ACTIONS.changeStartStation(startStation)),
+    changeDestinationStation: (destinationStation: string) => dispatch(ACTIONS.changeDestinationStation(destinationStation)),
+    changeTrainData: (data: string) =>dispatch(ACTIONS.changeTrainData(data))
 });
 
 export {
