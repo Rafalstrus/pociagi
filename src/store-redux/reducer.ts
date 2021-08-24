@@ -3,7 +3,7 @@ import ACTIONS from "./action";
 interface DefaultState {
     day: string,
     trainData: any,
-    departureTime: any,
+    departureTime: string,
     startStation: string,
     destinationStation: string
 }
@@ -11,7 +11,7 @@ interface DefaultState {
 const defaultState: DefaultState = {
     day: "12/08/2021",
     trainData: {},
-    departureTime: "",
+    departureTime: "07:30",
     startStation: "",
     destinationStation:""
 };
@@ -33,6 +33,18 @@ const Reducer = (state = defaultState, action: any) => {
             return {
                 ...state,
                 trainData : action.data
+            }
+        }
+        case ACTIONS.Types.CHANGE_DEPARTURE_TIME: {
+            return {
+                ...state,
+                departureTime : action.time
+            }
+        }
+        case ACTIONS.Types.CHANGE_DAY: {
+            return {
+                ...state,
+                day : action.day
             }
         }
         default:

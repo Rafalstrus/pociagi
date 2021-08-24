@@ -9,7 +9,9 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch: any) => ({
     changeStartStation: (startStation: string) => dispatch(ACTIONS.changeStartStation(startStation)),
     changeDestinationStation: (destinationStation: string) => dispatch(ACTIONS.changeDestinationStation(destinationStation)),
-    changeTrainData: (data: string) =>dispatch(ACTIONS.changeTrainData(data))
+    changeTrainData: (data: string) =>dispatch(ACTIONS.changeTrainData(data)),
+    changeDepartureTime: (time :string) => dispatch(ACTIONS.changeDepartureTime(time)),
+    changeDay: (day :string) => dispatch(ACTIONS.changeDay(day))
 });
 
 export {

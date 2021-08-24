@@ -15,5 +15,8 @@ function App() {
     </div>
   );
 }
+/*
 
+Suspense react
+*/
 export default App;

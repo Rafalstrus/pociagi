@@ -6,17 +6,23 @@ import { connect } from "react-redux";
 import DateFnsUtils from '@date-io/date-fns';
 import { Button, TextField, Box, Grid } from '@material-ui/core/';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers/';
-import { Autocomplete } from '@material-ui/lab/';
+import  Autocomplete  from '@material-ui/lab/Autocomplete';
 
 import { mapStateToProps, mapDispatchToProps } from '../../store-redux/operations';
 
 import { cities } from '../../cities names/cities'
 
-function TrainSelector() {
+function TrainSelector(
+  { changeStartStation, changeDestinationStation, changeDepartureTime, changeDay }: any) {
+
   const [selectedDate, setSelectedDate] = useState<any>(new Date());
 
-  const handleDateChange = (date: any) => {
-    setSelectedDate(date);
+  const handleDayChange = (date: any) => {
+    console.log(date.getDate())
+    console.log(date.getMonth() + 1)
+    console.log(date.getFullYear())
+    setSelectedDate(date)
+    //changeDay(date);
   };
   return (
     <Box
@@ -29,14 +35,23 @@ function TrainSelector() {
       >Select Your Train
       </p>
       <Grid
-        container direction={"row"}  justifyContent="center" 
+        container direction={"row"} justifyContent="center"
       >
         <Grid item xs={8} >
           <Autocomplete
             options={cities}
+            onChange={(data, values) => {
+              (values?.name !== undefined) ?
+                changeStartStation(values?.name) : changeStartStation("")
+            }}
             getOptionLabel={(option: any) => option.name}
             renderInput={(params) =>
-              <TextField {...params} label="Start Point" />}
+              <TextField
+                {...params}
+                onChange={(data) => changeStartStation(data.target.value)}
+                label="Start Point"
+
+              />}
           />
         </Grid>
         <Grid item xs={4} >
@@ -44,7 +59,7 @@ function TrainSelector() {
             id="time"
             label="departure"
             type="time"
-            onChange={(data :any)=>{console.log(data.target.value)}}
+            onChange={(data) => { changeDepartureTime(data.target.value) }}
             defaultValue="07:30"
             inputProps={{
               step: 300, // 5 min
@@ -53,22 +68,31 @@ function TrainSelector() {
           </TextField>
         </Grid>
         <Grid item xs={10} >
-            <Autocomplete
-              options={cities}
-              getOptionLabel={(option: any) => option.name}
-              renderInput={(params) =>
-                <TextField {...params} label="Destination" />}
-            />
+          <Autocomplete
+            onChange={(data, values) => {
+              (values?.name !== undefined) ?
+                changeDestinationStation(values?.name) : changeDestinationStation("")
+            }}
+            options={cities}
+            getOptionLabel={(option: any) => option.name}
+            renderInput={(params) =>
+              <TextField
+                {...params}
+                onChange={(data) => changeDestinationStation(data.target.value)}
+                label="Start Point"
+
+              />}
+          />
         </Grid>
       </Grid>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <MuiPickersUtilsProvider utils={DateFnsUtils} >
         <KeyboardDatePicker
           margin="normal"
           id="date-picker-dialog"
           label="Date picker dialog"
-          format="MM/dd/yyyy"
+          format="dd/MM/yyyy"
           value={selectedDate}
-          onChange={handleDateChange}
+          onChange={handleDayChange}
 
         />
       </MuiPickersUtilsProvider>
@@ -77,6 +101,7 @@ function TrainSelector() {
         color="secondary"
         size="medium"
         onClick={() => {
+          console.log("kukułka")
         }}>Check
       </Button>
     </Box>
