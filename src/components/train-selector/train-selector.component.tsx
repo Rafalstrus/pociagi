@@ -1,28 +1,44 @@
 import './train-selector.styles.css';
 
-import { useState } from 'react';
-import { connect } from "react-redux";
+import { useState, useEffect } from 'react';
+import { connect, useSelector } from "react-redux";
 
 import DateFnsUtils from '@date-io/date-fns';
 import { Button, TextField, Box, Grid } from '@material-ui/core/';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers/';
-import  Autocomplete  from '@material-ui/lab/Autocomplete';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import { mapStateToProps, mapDispatchToProps } from '../../store-redux/operations';
+
+import { getTrainData } from '../../fetches'
 
 import { cities } from '../../cities names/cities'
 
 function TrainSelector(
-  { changeStartStation, changeDestinationStation, changeDepartureTime, changeDay }: any) {
+  { changeStartStation, changeDestinationStation, changeDepartureTime, changeDay,changeTrainData}: any) {
 
   const [selectedDate, setSelectedDate] = useState<any>(new Date());
 
+
+  const day = useSelector((state: any) => (state.day))
+  const departureTime = useSelector((state: any) => (state.departureTime))
+  const startStation = useSelector((state: any) => (state.startStation))
+  const destinationStation = useSelector((state: any) => (state.destinationStation))
+
+  useEffect(() => {
+    let date = new Date()
+    let day = (date.getDate() > 10) ? date.getDate() : '0' + date.getDate()
+    let month = (date.getMonth() + 1 > 10) ? date.getMonth() + 1 : '0' + (date.getMonth() + 1)
+    let year = date.getFullYear()
+    changeDay(day + '/' + month + '/' + year)  // eslint-disable-next-line 
+  }, [])
+
   const handleDayChange = (date: any) => {
-    console.log(date.getDate())
-    console.log(date.getMonth() + 1)
-    console.log(date.getFullYear())
+    let day = (date.getDate() > 10) ? date.getDate() : '0' + date.getDate()
+    let month = (date.getMonth() + 1 > 10) ? date.getMonth() + 1 : '0' + (date.getMonth() + 1)
+    let year = date.getFullYear()
     setSelectedDate(date)
-    //changeDay(date);
+    changeDay(day + '/' + month + '/' + year)
   };
   return (
     <Box
@@ -38,6 +54,7 @@ function TrainSelector(
         container direction={"row"} justifyContent="center"
       >
         <Grid item xs={8} >
+          {/* input with start station data */}
           <Autocomplete
             options={cities}
             onChange={(data, values) => {
@@ -55,6 +72,7 @@ function TrainSelector(
           />
         </Grid>
         <Grid item xs={4} >
+          {/* input with start time data*/}
           <TextField
             id="time"
             label="departure"
@@ -68,6 +86,7 @@ function TrainSelector(
           </TextField>
         </Grid>
         <Grid item xs={10} >
+          {/* input with start destination data */}
           <Autocomplete
             onChange={(data, values) => {
               (values?.name !== undefined) ?
@@ -85,6 +104,7 @@ function TrainSelector(
           />
         </Grid>
       </Grid>
+      {/* input with start date data */}
       <MuiPickersUtilsProvider utils={DateFnsUtils} >
         <KeyboardDatePicker
           margin="normal"
@@ -100,8 +120,9 @@ function TrainSelector(
         variant="contained"
         color="secondary"
         size="medium"
-        onClick={() => {
-          console.log("kukułka")
+        onClick={async () => {
+          let data = await getTrainData(day,startStation,destinationStation,departureTime)
+          changeTrainData(data)
         }}>Check
       </Button>
     </Box>

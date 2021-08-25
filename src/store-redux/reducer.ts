@@ -9,7 +9,7 @@ interface DefaultState {
 }
 
 const defaultState: DefaultState = {
-    day: "12/08/2021",
+    day: "",
     trainData: {},
     departureTime: "07:30",
     startStation: "",
