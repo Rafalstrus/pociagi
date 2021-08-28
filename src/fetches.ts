@@ -3,18 +3,21 @@ export const getTrainData = async (day: any,
     destinationStation: string,
     departureTime: string) => {
         var data :any= {}
-    if (startStation !== '' && destinationStation !== ""){
+    if (startStation !== '' && destinationStation !== "" &&
+    startStation!==destinationStation
+    ){
          data =
             [
                 {
-                    departureTime: "12:30",
-                    arrivalTime: "15:20",
+                    departureTime: "13:30",
+                    arrivalTime: "16:20",
                     derpartureDay: "12/08/2021",
                     arrivalDay: "12/08/2021",
                     stations: [
-                        { name: "kraków", arrivalTime: "10:15", arrivalDay: "12/08/2021" },
-                        { name: "olsztyn", arrivalTime: "10:15", arrivalDay: "12/08/2021" },
-                        { name: "gdańsk", arrivalTime: "10:15", arrivalDay: "12/08/2021" }
+                        { name: "Kraków", arrivalTime: "11:15", arrivalDay: "12/08/2021" },
+                        { name: "Olsztyn", arrivalTime: "12:15", arrivalDay: "12/08/2021" },
+                        { name: "Gdańsk", arrivalTime: "13:15", arrivalDay: "12/08/2021" },
+                        { name: "Warszawa", arrivalTime: "14:15", arrivalDay: "12/08/2021" }
                     ]
 
                 },
@@ -24,9 +27,10 @@ export const getTrainData = async (day: any,
                     derpartureDay: "12/08/2021",
                     arrivalDay: "12/08/2021",
                     stations: [
-                        { name: "kraków", arrivalTime: "10:15", arrivalDay: "12/08/2021" },
-                        { name: "olsztyn", arrivalTime: "10:15", arrivalDay: "12/08/2021" },
-                        { name: "gdańsk", arrivalTime: "10:15", arrivalDay: "12/08/2021" }
+                        { name: "Kraków", arrivalTime: "10:15", arrivalDay: "12/08/2021" },
+                        { name: "Olsztyn", arrivalTime: "10:15", arrivalDay: "12/08/2021" },
+                        { name: "Gdańsk", arrivalTime: "10:15", arrivalDay: "12/08/2021" },
+                        { name: "Warszawa", arrivalTime: "12:15", arrivalDay: "12/08/2021" }
                     ]
                 }
             ]
