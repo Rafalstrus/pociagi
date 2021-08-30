@@ -1,4 +1,5 @@
 const Types = {
+    SET_PUBLIC_KEY:"SET_PUBLIC_KEY",
     CHANGE_START_STATION: "CHANGE_START_STATION",
     CHANGE_DESTINATION_STATION: "CHANGE_DESTINATION_STATION",
     CHANGE_TRAIN_DATA: "CHANGE_TRAIN_DATA",
@@ -6,6 +7,10 @@ const Types = {
     CHANGE_DAY: "CHANGE_DAY"
 };
 // actions
+const setPublicKey = (publicKey : any) => ({
+    type: Types.SET_PUBLIC_KEY,
+    publicKey: publicKey
+})
 const changeStartStation = (startStation: string) => ({
     type: Types.CHANGE_START_STATION,
     startStation: startStation
@@ -27,6 +32,7 @@ const changeDay = (day: string) => ({
     day: day
 })
 const exportedObject = {
+    setPublicKey,
     changeStartStation,
     changeDestinationStation,
     changeTrainData,

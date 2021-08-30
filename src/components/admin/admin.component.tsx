@@ -1,13 +1,31 @@
 import './admin.styles.css';
 
-import {Button} from '@material-ui/core/';
+import {useRef} from 'react'
+import {Box,Button,TextField} from '@material-ui/core/';
+
+import Encrypt from './admin.encrypt'
 
 function Admin() {
+  const adminPassword = useRef(null)
   return (
-    <div >
-      <Button />
-      <p>Admin</p>
-    </div>
+    <Box 
+    bgcolor="rgba(255, 255, 255, 0.96)"
+    padding="25px"
+    borderRadius="2vw"
+    maxWidth="300px"
+    >
+      <Box>
+        <TextField
+        ref={adminPassword}
+        ></TextField>
+      <Button 
+      variant="contained"
+      onClick={()=>{
+        console.log(adminPassword.current)
+      }}
+      >Check Password</Button>
+      </Box>
+    </Box>
   );
 }
 

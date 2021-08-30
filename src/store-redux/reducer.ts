@@ -1,6 +1,7 @@
 import ACTIONS from "./action";
 
 interface DefaultState {
+    publicKey: any,
     day: string,
     trainData: any,
     departureTime: string,
@@ -9,42 +10,49 @@ interface DefaultState {
 }
 
 const defaultState: DefaultState = {
+    publicKey: "",
     day: "",
     trainData: {},
     departureTime: "07:30",
     startStation: "",
-    destinationStation:""
+    destinationStation: ""
 };
 const Reducer = (state = defaultState, action: any) => {
     switch (action.type) {
+        case ACTIONS.Types.SET_PUBLIC_KEY: {
+            return {
+                ...state,
+                publicKey: action.publicKey
+            }
+        }
         case ACTIONS.Types.CHANGE_START_STATION: {
             return {
                 ...state,
-                startStation : action.startStation
+                startStation: action.startStation
             }
         }
         case ACTIONS.Types.CHANGE_DESTINATION_STATION: {
             return {
                 ...state,
-                destinationStation : action.destinationStation
+                destinationStation: action.destinationStation
             }
         }
         case ACTIONS.Types.CHANGE_TRAIN_DATA: {
             return {
                 ...state,
-                trainData : action.data
+                trainData: action.data
             }
         }
         case ACTIONS.Types.CHANGE_DEPARTURE_TIME: {
             return {
                 ...state,
-                departureTime : action.time
+                departureTime: action.time
             }
         }
         case ACTIONS.Types.CHANGE_DAY: {
             return {
                 ...state,
-                day : action.day
+                day: action.day
             }
         }
         default:

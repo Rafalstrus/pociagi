@@ -12,23 +12,26 @@ export const DepartureDetails = ({ data }: any) => {
             display={"none"}
             key={data.arrivalTime + " " + data.arrivalDay + "detail"}
         >
-            <p>{data.arrivalTime + " " + data.arrivalDay}</p>
+            <p>{"Departure:"+data.departureTime + " " + data.derpartureDay}</p>
+            
             <Box
                 border={"solid"}
             >
                 {data.stations.map((data: any) => {
-                    console.log(destinationStation, data.name)
+                    console.log(destinationStation, data)
                     console.log(destinationStation===data.name)
                     return(
-                        (startStation === data.name) ?
-                        <p style={{ color: "red" }}>{data.name} </p> :
+                        <Box>
+                        {(startStation === data.name) ?
+                        <p style={{ color: "red" }}>{data.name +" "+data.arrivalTime} </p> :
                         (destinationStation === data.name) ?
-                            <p style={{ color: "blue" }}>{data.name} </p> :
-                            <p >{data.name} </p>
+                            <p style={{ color: "blue" }}>{data.name+" "+data.arrivalTime} </p> :
+                            <p >{data.name+" "+data.arrivalTime} </p>}
+                        </Box>
                     )
                 })}
             </Box>
-            <p>{data.departureTime + " " + data.derpartureDay}</p>
+            <p>{"Arrival:" +data.arrivalTime + " " + data.arrivalDay}</p>
         </Box>
     )
 }

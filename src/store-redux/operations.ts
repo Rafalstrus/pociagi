@@ -7,6 +7,7 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
+    setPublicKey: (publicKey : any) => dispatch(ACTIONS.setPublicKey(publicKey)),
     changeStartStation: (startStation: string) => dispatch(ACTIONS.changeStartStation(startStation)),
     changeDestinationStation: (destinationStation: string) => dispatch(ACTIONS.changeDestinationStation(destinationStation)),
     changeTrainData: (data: string) =>dispatch(ACTIONS.changeTrainData(data)),
